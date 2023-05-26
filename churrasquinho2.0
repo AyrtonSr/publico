@@ -1,0 +1,107 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int opcao, opcao2, opcao3, opcao4, opcao5, opcao6, quant;
+    float valor, total = 0, gorjeta, pagamento, troco;
+
+    while (1) {
+        printf("Incluir item = 1\n");
+        printf("Fechar comanda = 2\n");
+        printf("Nova comanda = 3 (Devera ser usado para zerar o valor da comanda anterior)\n");
+        scanf("%i", &opcao);
+
+        switch (opcao) {
+            case 1:
+                printf("Informe o valor do item: \n");
+                scanf("%f", &valor);
+                printf("Informe a quantidade: \n");
+                scanf("%i", &quant);
+                total = total + (valor * quant);
+                printf("Deseja incluir mais itens?\n");
+                printf("Sim = 1\n");
+                printf("Nao = 2\n");
+                scanf("%i", &opcao2);
+                system("cls");
+                if (opcao2 == 2) {
+                    break;  // Sair do switch e voltar ao menu principal
+                }
+                continue;  // Continuar para o próximo caso (case 1) no loop while
+
+            case 2:
+                printf("O valor da compra deu: %.2f \n", total);
+                printf("Possui algum cupom de desconto?\n");
+                printf("Sim = 1\n");
+                printf("Nao = 2\n");
+                scanf("%i", &opcao3);
+                system("cls");
+
+                if (opcao3 == 1) {
+                    printf("Informe qual cupom sera utilizado: \n");
+                    printf("10%% = 1\n");
+                    printf("15%% = 2\n");
+                    printf("20%% = 3\n");
+                    scanf("%i", &opcao4);
+                    switch (opcao4) {
+                        case 1:
+                            total = total - (total * 0.1);
+                            break;
+                        case 2:
+                            total = total - (total * 0.15);
+                            break;
+                        case 3:
+                            total = total - (total * 0.2);
+                            break;
+                    }
+                    printf("O novo valor eh de: %.2f\n", total);
+                }
+
+                printf("Gostaria de incluir uma gorjeta?\n");
+                printf("Sim = 1\n");
+                printf("Nao = 2\n");
+                scanf("%i", &opcao5);
+                system("cls");
+
+                if (opcao5 == 1) {
+                    printf("Informe o valor da gorjeta: \n");
+                    scanf("%f", &gorjeta);
+                    total = total + gorjeta;
+                    system("cls");
+                }
+
+                printf("O valor total deu: %.2f\n", total);
+                printf("Informe o valor do pagamento: \n");
+                scanf("%f", &pagamento);
+                printf("\n");
+                troco = pagamento - total;
+                system("cls");
+
+                if (troco < 0) {
+                    printf("O valor do pagamento nao eh o suficiente, faltam R$%.2f\n", troco);
+                } else {
+                    printf("O troco deu: R$%.2f \n", troco);
+                }
+
+                printf("Digite 1 para voltar ao menu\n");
+                scanf("%i", &opcao6);
+                system("cls");
+                if (opcao6 == 1) {
+                    break;  // Sair do switch e voltar ao menu principal
+                }
+                continue;  // Continuar para o próximo caso (case 2) no loop while
+
+            case 3:
+                total = 0;
+                system("cls");
+                continue;  // Continuar para o próximo caso (case 3) no loop while
+
+            default:
+                printf("Opcao invalida!\n");
+        }
+
+        
+
+    }
+
+    return 0;
+}
