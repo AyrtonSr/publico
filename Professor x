@@ -1,0 +1,57 @@
+#include<stdio.h>
+
+#include<locale.h>
+
+float A=20, B=10;
+
+void x1(float E){
+
+float C, D;
+
+printf("Valor E: %f\n",E);
+
+C = E;
+
+printf("Valor C: %f\n",C);
+
+printf("Valor A: %f\n",A);
+
+}
+
+void x2(float F){
+
+float H = 40;
+
+printf("Valor F = %f\n",F);
+
+H = A;
+
+printf("Valor H = %f\n",H);
+
+F = F + 100;
+
+}
+
+int main(){
+
+float G, H;
+
+G = 10;
+
+H = 5;
+
+A = A + 100;
+
+x1(G);
+
+x1(A);
+
+x2(H);
+
+printf("Valor F: %f\n",H);
+
+x2(B);
+
+return 0;
+
+}
