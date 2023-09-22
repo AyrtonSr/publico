@@ -49,7 +49,7 @@ typedef struct Turma
     int faltas;
 } Turma;
 
-// ################################# INICIO DAS FUNÇÕES ALUNO ###########################################
+// ################################# INICIO DAS FUNí•©ES ALUNO ###########################################
 
 void menuAluno(Aluno *listaAlunos, int *qntAlunos);
 void cadastrarAluno(Aluno *listaAlunos, int *qntAlunos);
@@ -84,12 +84,14 @@ void atualizarAluno(Aluno *listaAlunos, int *qntAlunos){
     system("cls");
     fflush(stdin);
 
+    exibirListaAluno(listaAlunos,*qntAlunos);
+
     cout << "Digite a matricula do cliente que deseja atualizar: ";
     cin >> matricula;
 
     int posicao = buscarPosicaoAluno(listaAlunos, *qntAlunos, matricula);
     if (posicao != -1) {
-            cout << "Informe o nome do ALuno: \n";
+            cout << "Informe o nome do ALuno: ";
             cin.ignore();
             cin.getline(listaAlunos[posicao].nome, 50);
             cout << "Nome cadastrado\n";
@@ -100,8 +102,25 @@ void atualizarAluno(Aluno *listaAlunos, int *qntAlunos){
             cout << "\nDigite o ano do nascimento: ";
             cin >> listaAlunos[posicao].dataNascimento.ano;
             cout << "Data cadastrada\n";
+            cin.ignore();
+            while (true) {
+                char tecla = getchar();
+
+                if (tecla == '\n') {
+                    break;
+                }
+            }
     } else {
         cout << "\nAluno nao encontrado!\n\n";
+        cin.ignore();
+            while (true) {
+                char tecla = getchar();
+
+                if (tecla == '\n') {
+                    break;
+                }
+            }
+            system("cls");
     }
 
 }
@@ -112,6 +131,8 @@ void excluirAluno(Aluno *listaAlunos, int *qntAlunos){
     system("cls");
     fflush(stdin);
 
+    exibirListaAluno(listaAlunos,*qntAlunos);
+
     cout << "Digite a matricula do cliente que deseja excluir: ";
     cin >> matricula;
 
@@ -120,10 +141,28 @@ void excluirAluno(Aluno *listaAlunos, int *qntAlunos){
         for (int i = posicao; i < *qntAlunos - 1; i++) {
             listaAlunos[i] = listaAlunos[i + 1];
         }
+        cout << "Aluno excluido!!\n";
+        cin.ignore();
+            while (true) {
+                char tecla = getchar();
+
+                if (tecla == '\n') {
+                    break;
+                }
+            }
         (*qntAlunos)--;
         system("cls");
     } else {
         cout << "\nAluno nao encontrado!\n\n";
+        cin.ignore();
+            while (true) {
+                char tecla = getchar();
+
+                if (tecla == '\n') {
+                    break;
+                }
+            }
+            system("cls");
     }
 }
 
@@ -140,7 +179,7 @@ void cadastrarAluno(Aluno *listaAluno, int *qntAlunos){
     system("cls");
     while (sair != 1){
     if (*qntAlunos<LIMITALUNO){
-            cout << "Informe o nome do ALuno: \n";
+            cout << "Informe o nome do ALuno: ";
             cin.ignore();
             cin.getline(listaAluno[*qntAlunos].nome, 50);
             cout << "Nome cadastrado\n";
@@ -156,12 +195,28 @@ void cadastrarAluno(Aluno *listaAluno, int *qntAlunos){
             cout << "...\n";
             cout << "Matricula gerada\n";
             cout << "Obrigado\n";
+            cin.ignore();
+            while (true) {
+                char tecla = getchar();
+
+                if (tecla == '\n') {
+                    break;
+                }
+            }
             (*qntAlunos)++;
             sair = 1;
 
 
     } else {
         cout << "\nNumero maximo de Alunos Cadastrados\n";
+        cin.ignore();
+            while (true) {
+                char tecla = getchar();
+
+                if (tecla == '\n') {
+                    break;
+                }
+            }
         sair = 1;
     }
 
@@ -176,7 +231,7 @@ void menuAluno(Aluno *listaAlunos, int *qntAlunos){
     system("cls");
     while (opcaomenu != 4) {
         fflush(stdin);
-        cout << "Bem vindo ao Menu Aluno \n";
+        cout << "Bem vindo ao Menu Aluno \n\n";
         cout << "Selecione alguma das opcoes a seguir: \n";
         cout << "1 - Cadastrar Aluno \n";
         cout << "2 - Editar Aluno \n";
@@ -187,9 +242,11 @@ void menuAluno(Aluno *listaAlunos, int *qntAlunos){
         switch (opcaomenu) {
             case 1:
                 cadastrarAluno(listaAlunos, qntAlunos);
+                system("cls");
                 break;
             case 2:
                 atualizarAluno(listaAlunos, qntAlunos);
+                system("cls");
                 break;
             case 3:
                 excluirAluno(listaAlunos, qntAlunos);
@@ -197,6 +254,15 @@ void menuAluno(Aluno *listaAlunos, int *qntAlunos){
             case 4:
                 system("cls");
                 cout << "\n\nAte a proxima!\n\n";
+                cin.ignore();
+                while (true) {
+                    char tecla = getchar();
+
+                    if (tecla == '\n') {
+                        break;
+                    }
+                }
+                system("cls");
                 break;
             default:
                 system("cls");
@@ -206,9 +272,9 @@ void menuAluno(Aluno *listaAlunos, int *qntAlunos){
 }
 }
 
-// ################################# FIM DAS FUNÇÕES ALUNO ###########################################
+// ################################# FIM DAS FUNí•©ES ALUNO ###########################################
 
-// ################################# INICIO DAS FUNÇÕES DISCIPLINA ###########################################
+// ################################# INICIO DAS FUNí•©ES DISCIPLINA ###########################################
 void menuDisciplina(Disciplina *listaDisciplina, int *qntDisciplina);
 void cadastrarDisciplina(Disciplina *listaDisciplina, int *qntDisciplina);
 void atualizarDisciplina(Disciplina *listaDisciplina, int *qntDisciplina);
@@ -256,10 +322,28 @@ void excluirDisciplina(Disciplina *listaDisciplina, int *qntDisciplina){
         for (int i = posicao; i < *qntDisciplina - 1; i++) {
             listaDisciplina[i] = listaDisciplina[i + 1];
         }
+        cout << "Disciplina excluida!!\n";
+        cout << "Obrigado\n";
+        cin.ignore();
+        while (true) {
+            char tecla = getchar();
+
+            if (tecla == '\n') {
+                break;
+            }
+        }
         (*qntDisciplina)--;
         system("cls");
     } else {
         cout << "\nDisciplina nao encontrado!\n\n";
+        cin.ignore();
+            while (true) {
+                char tecla = getchar();
+
+                if (tecla == '\n') {
+                    break;
+                }
+            }
     }
 
 }
@@ -283,8 +367,25 @@ void atualizarDisciplina(Disciplina *listaDisciplina, int *qntDisciplina){
             cout << "Digite a Carga horaria 'valor numerico': ";
             cin >> listaDisciplina[posicao].ch;
             cout << "Carga Horaria cadastrada\n";
+            cout << "Obrigado\n";
+            cin.ignore();
+            while (true) {
+                char tecla = getchar();
+
+                if (tecla == '\n') {
+                    break;
+                }
+            }
     } else {
         cout << "\nDisciplina nao encontrada!\n\n";
+        cin.ignore();
+            while (true) {
+                char tecla = getchar();
+
+                if (tecla == '\n') {
+                    break;
+                }
+            }
     }
 
 }
@@ -295,7 +396,7 @@ void cadastrarDisciplina(Disciplina *listaDisciplina, int *qntDisciplina){
     system("cls");
     while (sair != 1){
     if (*qntDisciplina<LIMITDISCIPLINA){
-            cout << "Informe o nome da Disciplina: \n";
+            cout << "Informe o nome da Disciplina: ";
             cin.ignore();
             cin.getline(listaDisciplina[*qntDisciplina].nome, 50);
             cout << "Nome cadastrado\n";
@@ -307,8 +408,18 @@ void cadastrarDisciplina(Disciplina *listaDisciplina, int *qntDisciplina){
             cout << "...\n";
             cout << "Codigo gerada\n";
             cout << "Obrigado\n";
+            cin.ignore();
+            while (true) {
+                char tecla = getchar();
+
+                if (tecla == '\n') {
+                    break;
+                }
+            }
             (*qntDisciplina)++;
             sair = 1;
+
+
     } else {
         cout << "\nNumero maximo de Disciplinas Cadastradas\n";
         sair = 1;
@@ -324,7 +435,7 @@ void menuDisciplina(Disciplina *listaDisciplina, int *qntDisciplina){
         system("cls");
         while (opcaomenu != 4) {
             fflush(stdin);
-            cout << "Bem vindo ao Menu Disciplina \n";
+            cout << "Bem vindo ao Menu Disciplina \n\n";
             cout << "Selecione alguma das opcoes a seguir: \n";
             cout << "1 - Cadastrar Disciplina \n";
             cout << "2 - Editar Disciplina \n";
@@ -336,18 +447,30 @@ void menuDisciplina(Disciplina *listaDisciplina, int *qntDisciplina){
                 case 1:
                     system("cls");
                     cadastrarDisciplina(listaDisciplina, qntDisciplina);
+                    system("cls");
                     break;
                 case 2:
                     system("cls");
                     atualizarDisciplina(listaDisciplina, qntDisciplina);
+                    system("cls");
                     break;
                 case 3:
                     system("cls");
                     excluirDisciplina(listaDisciplina, qntDisciplina);
+                    system("cls");
                     break;
                 case 4:
                     system("cls");
-                    cout << "\n\nAte a proxima!\n\n";
+                    cout << "\n\nAte a proxima!\n";
+                    cin.ignore();
+                    while (true) {
+                        char tecla = getchar();
+
+                        if (tecla == '\n') {
+                            break;
+                        }
+                    }
+                    system("cls");
                     break;
                 default:
                     system("cls");
@@ -357,9 +480,9 @@ void menuDisciplina(Disciplina *listaDisciplina, int *qntDisciplina){
     }
 
 }
-// ################################# FIM DAS FUNÇÕES DISCIPLINA ###########################################
+// ################################# FIM DAS FUNí•©ES DISCIPLINA ###########################################
 
-// ################################# INICIO DAS FUNÇÕES TURMA ###########################################
+// ################################# INICIO DAS FUNí•©ES TURMA ###########################################
 void menuTurma(Turma *listaTurma, int *qntTurma, Disciplina *listaDisciplina, int qntDisciplina, Aluno *listaAlunos, int qntAlunos);
 void cadastrarTurma(Turma *listaTurma, int *qntTurma);
 void atualizarTurma(Turma *listaTurma, int *qntTurma);
@@ -403,6 +526,7 @@ void exibirListaTurma(Turma *listaTurma, int qntTurma){
 void atualizarTurma(Turma *listaTurma, int *qntTurma){
     int codigo;
     int matricula;
+    system("cls");
     fflush(stdin);
     cout << "Lista de Turmas: \n";
     exibirListaTurma(listaTurma, *qntTurma);
@@ -433,8 +557,25 @@ void atualizarTurma(Turma *listaTurma, int *qntTurma){
             }
             cout << "\nInforme o numero de faltas: ";
             cin >> listaTurma[posicao].faltas;
+            cout << "\nTurma Atualizada";
+            cin.ignore();
+            while (true) {
+                char tecla = getchar();
+
+                if (tecla == '\n') {
+                    break;
+                }
+            }
     } else {
         cout << "\nTurma nao encontrada!\n\n";
+        cin.ignore();
+            while (true) {
+                char tecla = getchar();
+
+                if (tecla == '\n') {
+                    break;
+                }
+            }
     }
 
 }
@@ -443,6 +584,7 @@ void excluirTurma(Turma *listaTurma, int *qntTurma){
     int codigo;
     int matricula;
     fflush(stdin);
+    system("cls");
     cout << "Lista de Turmas: \n";
     exibirListaTurma(listaTurma, *qntTurma);
 
@@ -456,10 +598,27 @@ void excluirTurma(Turma *listaTurma, int *qntTurma){
         for (int i = posicao; i < *qntTurma - 1; i++) {
             listaTurma[i] = listaTurma[i + 1];
         }
+        cout << "Turma excluida!!";
+        cin.ignore();
+        while (true) {
+            char tecla = getchar();
+
+            if (tecla == '\n') {
+                break;
+            }
+        }
         (*qntTurma)--;
         system("cls");
     } else {
         cout << "\nTurma nao encontrada!\n\n";
+        cin.ignore();
+            while (true) {
+                char tecla = getchar();
+
+                if (tecla == '\n') {
+                    break;
+                }
+            }
     }
 
 }
@@ -483,6 +642,14 @@ void cadastrarTurma(Turma *listaTurma, int *qntTurma, Disciplina *listaDisciplin
                 cout << "Codigo Aplicado\n";
             } else {
                 cout << "\nDisciplina nao encontrado!\n\n";
+                cin.ignore();
+                while (true) {
+                    char tecla = getchar();
+
+                    if (tecla == '\n') {
+                        break;
+                    }
+                }
                 break;
             }
             cout << "Lista de Alunos: \n";
@@ -495,6 +662,14 @@ void cadastrarTurma(Turma *listaTurma, int *qntTurma, Disciplina *listaDisciplin
                 cout << "Matricula Aplicada\n";
             } else {
                 cout << "\nAluno nao encontrado!\n\n";
+                cin.ignore();
+                while (true) {
+                    char tecla = getchar();
+
+                    if (tecla == '\n') {
+                        break;
+                    }
+                }
                 break;
             }
             cout << "Informe o ano da Turma: ";
@@ -516,10 +691,26 @@ void cadastrarTurma(Turma *listaTurma, int *qntTurma, Disciplina *listaDisciplin
             }
             cout << "\nInforme o numero de faltas: ";
             cin >> listaTurma[*qntTurma].faltas;
+            cin.ignore();
+            while (true) {
+                char tecla = getchar();
+
+                if (tecla == '\n') {
+                    break;
+                }
+            }
             (*qntTurma)++;
             sair = 1;
     } else {
         cout << "\nNumero maximo de Turmas cadastradas\n";
+        cin.ignore();
+            while (true) {
+                char tecla = getchar();
+
+                if (tecla == '\n') {
+                    break;
+                }
+            }
         sair = 1;
     }
 }
@@ -542,12 +733,15 @@ void menuTurma(Turma *listaTurma, int *qntTurma, Disciplina *listaDisciplina, in
             switch (opcaomenu) {
                 case 1:
                     cadastrarTurma(listaTurma, qntTurma, listaDisciplina,qntDisciplina, listaAlunos, qntAlunos);
+                    system("cls");
                     break;
                 case 2:
                     atualizarTurma(listaTurma, qntTurma);
+                    system("cls");
                     break;
                 case 3:
                     excluirTurma(listaTurma, qntTurma);
+                    system("cls");
                     break;
                 case 4:
                     system("cls");
@@ -561,7 +755,7 @@ void menuTurma(Turma *listaTurma, int *qntTurma, Disciplina *listaDisciplina, in
     }
 
 }
-// ################################# FIM DAS FUNÇÕES Turma ###########################################
+// ################################# FIM DAS FUNí•©ES Turma ###########################################
 
 
 int main (){
