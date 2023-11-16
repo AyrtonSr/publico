@@ -4,7 +4,7 @@
 
 using namespace std;
 
-// criaÁ„o da fila
+// cria√ß√£o da fila
 typedef struct FILA
 {
   int nPacote;
@@ -21,9 +21,9 @@ void gotoxy(int x, int y)
 
 void enqueue(FILA **inicio, FILA **fim, int pacote){ // metodo responsavel por acrescentar um novo item na fila
 
-    FILA *novoPacote = new FILA(); // Atribui uma nova regi„o de memÛria ‡ um ponteiro
+    FILA *novoPacote = new FILA(); // Atribui uma nova regi√£o de mem√≥ria √† um ponteiro
 
-    if ((*inicio)==NULL){ // verificaÁ„o se ja existe uma fila
+    if ((*inicio)==NULL){ // verifica√ß√£o se ja existe uma fila
         (*inicio)=novoPacote;
         (*fim)=novoPacote;
         novoPacote->nPacote = pacote;
@@ -38,13 +38,13 @@ void enqueue(FILA **inicio, FILA **fim, int pacote){ // metodo responsavel por a
 
 FILA *dequeue(FILA *&inicio){ // metodo responsavel por tirar o item do incio da fila e retornalo para ser exibido
 
-    FILA *aux; // aux È responsavel por armazenar o item que sera exibido apos esse metodo
+    FILA *aux; // aux √© responsavel por armazenar o item que sera exibido apos esse metodo
     aux=inicio;
     inicio= inicio->proxpacote;
     return aux;
 }
 
-void telaDeCarregamento(int qtd, int atual){
+void telaDeCarregamento(int qtd, int atual, int carregamento){
     system("COLOR 0e");
 
     int bar1 = 177, bar2 = 219;
@@ -54,7 +54,7 @@ void telaDeCarregamento(int qtd, int atual){
     }
     for(int i=20;i<=45;i++){
     gotoxy(i,5);printf("%c", bar2);
-    Sleep(40);
+    Sleep(carregamento);
     }
 }
 
@@ -63,7 +63,7 @@ int main (){
 
     FILA *inicio = NULL;
     FILA *fim = NULL;
-    int tamanho = 0, pacotes = 50, qtdpacotes = 0, c=1, c2=0;
+    int tamanho = 0, pacotes = 50, qtdpacotes = 0, c=1, c2=0, carregamento = 40;
 
     gotoxy(2,2);printf("%c", 254);
     gotoxy(4,2);cout << "INFORME O TAMANHO DO ARQUIVO(EM KB): ";
@@ -71,9 +71,10 @@ int main (){
 
     if (tamanho>1000){
         pacotes = 500;
+        carregamento = 150;
     }
 
-    // VerificaÁ„o de quantos pacotes ser„o necessarios
+    // Verifica√ß√£o de quantos pacotes ser√£o necessarios
     if (tamanho%pacotes == 0){
         qtdpacotes = tamanho/pacotes;
     } else{
@@ -99,7 +100,7 @@ int main (){
         FILA *aux; // aux do tipo FILA que ira receber o intem que esta no inicio da fila
         aux=dequeue(inicio);
 
-        telaDeCarregamento(qtdpacotes,c2);
+        telaDeCarregamento(qtdpacotes,c2, carregamento);
         c2++;
         gotoxy(5,y);cout<< "Pacote "<<aux->nPacote<< " Carregado";
         y++;
